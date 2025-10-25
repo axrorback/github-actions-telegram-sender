@@ -5,7 +5,7 @@ load_dotenv()
 app = FastAPI()
 
 TELEGRAM_BOT_TOKEN = os.getenv('TOKEN')
-TELEGRAM_CHAT_ID = "-1003073062737"  # private kanal ID
+TELEGRAM_CHAT_ID = ""  # private kanal ID
 
 async def send_to_telegram(message: str):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
@@ -120,7 +120,6 @@ async def github_webhook(request: Request):
                 f"🔗 <a href='{url}'>View release</a>")
         await send_to_telegram(text)
 
-    # 🔹 Repository created
     elif event == "repository":
         action = payload.get("action")
         repo_info = payload.get("repository", {})
@@ -132,7 +131,6 @@ async def github_webhook(request: Request):
                 f"🔗 <a href='{url}'>View repo</a>")
         await send_to_telegram(text)
 
-    # 🔹 Default — barcha boshqa eventlar
     else:
         sender = payload.get("sender", {}).get("login", "unknown")
         text = (f"ℹ️ <b>Event:</b> {event}\n"
