@@ -5,7 +5,7 @@ load_dotenv()
 app = FastAPI()
 
 TELEGRAM_BOT_TOKEN = os.getenv('TOKEN')
-TELEGRAM_CHAT_ID = ""  # private kanal ID
+TELEGRAM_CHAT_ID = ""  
 
 async def send_to_telegram(message: str):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
