@@ -107,7 +107,6 @@ async def github_webhook(request: Request):
                 f"🔗 <a href='{url}'>View fork</a>")
         await send_to_telegram(text)
 
-    # 🔹 Release
     elif event == "release":
         action = payload.get("action")
         rel = payload.get("release", {})
